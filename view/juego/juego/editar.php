@@ -1,9 +1,3 @@
-<?php
-
-dd( $_SESSION['cliente'] );
-
-?>
-
 
 <style>
     .jumbotron{
@@ -39,9 +33,14 @@ dd( $_SESSION['cliente'] );
             <select class="form-control" name="genero[]" id="selectGenero">
                 <option>Seleccione</option>
                 <?php
-                    foreach($genero as $gen){
+                    foreach($genero_juego as $gen){
+                        if ($gen['gen_id']==$jue['gen_id']) {
+                            $select="selected";
+                        }else{
+                            $select="";
+                        }
                         
-                        echo "<option value='".$gen['gen_id']."'>".$gen['gen_descripcion']."</option>";
+                        echo "<option value='".$gen['gen_id']."' $select>".$gen['gen_descripcion']."</option>";
                     }
                 ?>
             </select>
@@ -49,9 +48,9 @@ dd( $_SESSION['cliente'] );
             
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <button type="button" class="btn btn-success boton" id="generoProducto">+</button>
-        </div>
+        </div> -->
         <div class="col-md-5 form-group">
             <label>Pa&iacute;s</label>
             <select name="pais" class="form-control">
@@ -74,8 +73,8 @@ dd( $_SESSION['cliente'] );
                 <option>Seleccione</option>
                 <?php
                     while($casa= mysqli_fetch_assoc($casa_desarrolladora)){
-                            $cas_jue= mysqli_fetch_assoc($cas_des);
-                            if($casa['cas_des_id']==$cas_jue['cas_des_id']){
+                            //$cas_jue= mysqli_fetch_assoc($cas_des);
+                            if($casa['cas_des_id']==$jue['cas_des_id']){
                                 echo "<option selected $sel value='".$casa['cas_des_id']."'>".$casa['cas_des_descripcion']."</option>";
                             }else{
                                 echo "<option $sel value='".$casa['cas_des_id']."'>".$casa['cas_des_descripcion']."</option>";
@@ -117,8 +116,14 @@ dd( $_SESSION['cliente'] );
             <label>Idioma</label>
             <?php
                     while($idi= mysqli_fetch_assoc($idioma)){
-                        
-                        echo "<div><input name='idioma[]' class='col-md-3' type='checkbox' value='".$idi['idi_id']."'>".utf8_encode($idi['idi_descripcion'])."</div>";
+                        foreach ($idi_jue as $idi_j) {
+                            if ($idi_j['idi_id']==$idi['idi_id']) {
+                                
+                                $checked="checked";
+                            }
+                        }
+                        echo "<div><input name='idioma[]' class='col-md-3' type='checkbox' value='".$idi['idi_id']."' $checked>".utf8_encode($idi['idi_descripcion'])."</div>";
+                        $checked="";
                     }
                 ?>
         </div>
@@ -132,8 +137,8 @@ dd( $_SESSION['cliente'] );
         <div class="col-md-10 form-group">
             <center>
                 
-                <input class="btn btn-primary btn-lg" type="submit" name="registrar" value="Editar">&nbsp; &nbsp; &nbsp;
-                <a class="btn btn-lg btn-danger" href="<?php echo getUrl("Juego/Juego", "juego", "listar"); ?>">Cancelar</a>
+                <input class="btn btn-primary " type="submit" name="registrar" value="Editar">&nbsp; &nbsp; &nbsp;
+                <a class="btn  btn-danger" href="<?php echo getUrl("Juego/Juego", "juego", "listar"); ?>">Cancelar</a>
             </center><br>
         </div>
     </div>

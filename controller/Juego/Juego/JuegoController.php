@@ -72,14 +72,14 @@
         function getEditar(){
             $juego_id=$_GET['jue_id'];
             $objConnection=new JuegoModel();
-            $sql="select j.*, p.pla_id from juego j, plataforma_juego p where j.jue_id=$juego_id and p.jue_id=$juego_id";
+            $sql="select j.*, p.pla_id,g.gen_id,cdj.cas_des_id from juego j, plataforma_juego p,genero_juego gj, genero g, casa_desarrolladora_juego cdj, casa_desarrolladora cd where j.jue_id=$juego_id and p.jue_id=$juego_id and j.jue_id=gj.jue_id AND gj.gen_id=g.gen_id AND j.jue_id=cdj.jue_id AND cdj.cas_des_id=cd.cas_des_id";
             $sqlPla="select * from plataforma";
             $sqlIdio_Juego="select * from idioma_juego where jue_id=$juego_id";
             $sqlPla_Juego="select * from plataforma_juego where jue_id=$juego_id";
             $casita="select * from casa_desarrolladora";
             $sqlIdi="select * from idioma";
             $sqlCasa="select * from casa_desarrolladora_juego where jue_id=$juego_id";
-            $sqlGen_jue="select * from genero_juego where jue_id=$juego_id";
+            $sqlGen_jue="SELECT gj.*,g.* from genero_juego gj, juego j, genero g where j.jue_id=$juego_id AND j.jue_id=gj.jue_id AND gj.gen_id=g.gen_id LIMIT 1";
             $pai="select * from pais";
             
             $pais=$objConnection->consultar($pai);
@@ -89,6 +89,7 @@
             $cas_des=$objConnection->consultar($sqlCasa);
             $sqlGen="select * from genero";
             $genero=$objConnection->consultar($sqlGen);
+            $genero_juego=$objConnection->consultar($sqlGen);
             $juego=$objConnection->consultar($sql);
             $plataforma=$objConnection->consultar($sqlPla);
             $casa_desarrolladora=$objConnection->consultar($casita);
