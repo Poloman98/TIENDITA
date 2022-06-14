@@ -1,5 +1,5 @@
 <?php
-    include_once '../model/Juego/Juego/JuegoModel.php';
+    include_once 'model/Juego/Juego/JuegoModel.php';
     
     Class JuegoController{
         
@@ -18,7 +18,7 @@
             $idioma=$objConnection->consultar($sqlIdi);
             $casa_desarrolladora=$objConnection->consultar($sqlCasa);
             $jue=$objConnection->lastInsertId("juego","jue_id");
-            include_once '../view/juego/juego/crear.php';
+            include_once 'view/juego/juego/crear.php';
         }
         public function postCrear(){
             $objConnection=new JuegoModel();
@@ -93,7 +93,7 @@
             $plataforma=$objConnection->consultar($sqlPla);
             $casa_desarrolladora=$objConnection->consultar($casita);
             $idioma=$objConnection->consultar($sqlIdi);
-            include_once '../view/juego/juego/editar.php';
+            include_once 'view/juego/juego/editar.php';
             
         }
         function postEditar(){
@@ -187,7 +187,7 @@
                     . "where pj.jue_id=$jue_id and p.pla_id=pj.pla_id";
             $plataforma=$objConnection->consultar($sqlPla);
             
-            include_once '../view/juego/juego/eliminar.php';
+            include_once 'view/juego/juego/eliminar.php';
         }
         public function postEliminar() {
             $objConnection=new JuegoModel();
@@ -218,7 +218,7 @@
             $sql="select g.gen_descripcion from genero g, genero_juego gj, juego j "
                     . "where gj.gen_id=g.gen_id and gj.jue_id=j.jue_id";
             $genero=$objConnection->consultar($sql);
-            include_once '../view/juego/juego/listar.php';
+            include_once 'view/juego/juego/listar.php';
         }
         public function detalle(){
             $objConnection=new JuegoModel();
@@ -242,16 +242,59 @@
                     . "where pj.jue_id=$jue_id and p.pla_id=pj.pla_id";
             $plataforma=$objConnection->consultar($sqlPla);
             
-            include_once '../view/juego/juego/detalle.php';
+            include_once 'view/juego/juego/detalle.php';
         }
         public function vista(){
             $objConnection=new JuegoModel();
             $sql="select * from juego";
             $juegos=$objConnection->consultar($sql);
             
-            include_once '../view/juego/juego/prueba.php';
+            include_once 'view/juego/juego/prueba.php';
             
         }
+
+
+        function addCart(){
+            $objConnection = new JuegoModel();
+            
+            $cliente = $_POST['cliente'];
+            $juego = $_POST['jue_id'];
+            
+
+            $sql = "SELECT car_id FROM carrito where cli_id = '$cliente' limit 1";
+            $dataCarrito = $objConnection->consultar($sql);
+
+            $carrito = mysqli_fetch_assoc($dataCarrito);
+            
+            if(!$carrito){
+                $sql = "INSERT INTO `carrito` (`cli_id`, `status`) VALUES ('$cliente',  '1');";
+                $objConnection->insertar($sql);
+                
+                $sql = "SELECT car_id FROM carrito where cli_id = '$cliente' limit 1";
+                $dataCarrito = $objConnection->consultar($sql);
+    
+                $carrito = mysqli_fetch_assoc($dataCarrito);                
+
+            }
+
+
+            $this->putInTheCart($carrito['car_id'],$juego);
+            
+            echo json_encode(["msg" => true]);
+        }
+
+
+        function putInTheCart($cart_id, $juego, $cantidad = 1){
+            $objConnection = new JuegoModel();
+
+            $sql = "SELECT car_id FROM carrito where cli_id = 2 limit 1";
+            // $dataCarrito = $objConnection->consultar($sql);
+            // dd(mysqli_fetch_assoc($datacarrito));
+
+            echo $sql;
+            
+        }
+
         
     }
     

@@ -1,12 +1,12 @@
 <?php
-    include_once '../lib/helpers.php';
-    include_once '../view/partials/head.php';
+    include_once 'lib/helpers.php';
+    include_once 'view/partials/head.php';
     session_start();
 ?>
 <body>
     <div id="wrapper">
         <?php
-            include_once '../view/partials/sidebar-left.php';
+            include_once 'view/partials/sidebar-left.php';
         ?>
         
         <div id="page-wrapper">
@@ -28,7 +28,7 @@
 
                 </div>
             <?php
-                include_once '../view/partials/slider.php';
+                include_once 'view/partials/slider.php';
                 }
             ?>
             </div>
@@ -36,5 +36,5 @@
     </div>
     <!-- /#wrapper -->
     <?php
-        include_once '../view/partials/footer.php';
+        include_once 'view/partials/footer.php';
     ?>

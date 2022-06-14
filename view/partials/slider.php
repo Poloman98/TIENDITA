@@ -1,5 +1,5 @@
 <?php
-    include_once '../model/MasterModel.php';
+    include_once 'model/MasterModel.php';
     
     $objConnection=new MasterModel();
     
@@ -28,19 +28,19 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <center><img class="first-slide imagen" src="sliders/uncharted-4-portada.png" alt="First slide"></center>
+            <center><img class="first-slide imagen" src="web/sliders/uncharted-4-portada.png" alt="First slide"></center>
           
         </div>
         <div class="item">
-            <center><img class="second-slide imagen" src="sliders/call_of_duty_black_ops_3.png" alt="Second slide"></center>
+            <center><img class="second-slide imagen" src="web/sliders/call_of_duty_black_ops_3.png" alt="Second slide"></center>
           
         </div>
         <div class="item">
-            <center><img class="third-slide imagen" src="sliders/gta-5_portada.png" alt="Third slide"></center>
+            <center><img class="third-slide imagen" src="web/sliders/gta-5_portada.png" alt="Third slide"></center>
           
         </div>
         <div class="item">
-            <center><img class="four-slide imagen" src="sliders/fifa-18-portada-1.jpg" alt="Fourth slide"></center>
+            <center><img class="four-slide imagen" src="web/sliders/fifa-18-portada-1.jpg" alt="Fourth slide"></center>
           
         </div>
       </div>

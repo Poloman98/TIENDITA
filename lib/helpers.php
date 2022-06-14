@@ -27,10 +27,10 @@ function resolve(){
     $controlador= ucwords($_GET['controlador']);
     $funcion=$_GET['funcion'];
     
-    if(is_dir("../controller/$modulo")){
+    if(is_dir("controller/$modulo")){
         
-        if(file_exists("../controller/$modulo/".$controlador."Controller.php")){
-            include_once "../controller/$modulo/".$controlador."Controller.php";
+        if(file_exists("controller/$modulo/".$controlador."Controller.php")){
+            include_once "controller/$modulo/".$controlador."Controller.php";
             $nombreClase=$controlador."Controller";
             $objClase=new $nombreClase();
             if(method_exists($objClase, $funcion)){

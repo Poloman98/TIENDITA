@@ -44,18 +44,16 @@
             <img src="<?php echo $jue['jue_imagen']?>" class="juego" id="imagen" data-zoom-image="<?php echo $jue['jue_imagen']?>">
             <br><br><br>
         </div>
-<div class="container">
-        <div class="col-md-4 form-group">
-            <label>Nombre</label>
-            <?php echo "<br>". $jue['jue_nombre']; ?>
-        </div>
-        <div class="col-md-4 form-group">
-            <label>Precio</label>
-            <?php
-                
-                    echo "<br>$ ". utf8_encode($jue['jue_precio'])." COP";
-                
-            ?> 
+        <div class="container">
+                <div class="col-md-4 form-group">
+                    <label>Nombre</label>
+                    <?php echo "<br>". $jue['jue_nombre']; ?>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Precio</label>
+                    <?php
+                            echo "<br>$ ". utf8_encode($jue['jue_precio'])." COP";  
+                    ?> 
         </div>
         <div class="col-md-4 form-group">
             <label>Plataformas Disponibles</label>
@@ -69,7 +67,7 @@
             <label>Idioma</label>
             <?php
                 while ($idi= mysqli_fetch_assoc($idioma)){
-                    echo "<br>". utf8_encode($idi['idi_descripcion']);
+                    echo "<br>".$idi['idi_descripcion'];
                 }
             ?> 
         </div>
@@ -82,7 +80,6 @@
             ?> 
             
         </div>
-        
         <div class="col-md-3 form-group">
             <label>Casa Desarrolladora</label>
             <?php
@@ -91,20 +88,32 @@
                 }
             ?> 
         </div>
-        
         <div class="col-md-11 form-group">
             <br><label>Descripci&oacute;n</label>
-            <textarea style="background: white;" class="form-control textarea" rows="8" readonly name="descripcion" value=""><?php echo utf8_encode($jue['jue_descripcion']); ?></textarea>
+            <textarea style="background: white;" class="form-control textarea" rows="8" readonly name="descripcion" value=""><?php echo $jue['jue_descripcion']; ?></textarea>
 <!--            <p style="text-align: justify">//<?php echo utf8_encode($jue['jue_descripcion']); ?></p>-->
         </div>
     </div>
-<?php
-    if(isset($_SESSION['cliente'])){
-?>
+    <?php
+        if(isset($_SESSION['cliente'])){
+    ?>
     <div class="col-md-10 form-group">
         <center>
             <br><br>
-            <button class="btn btn-primary btn-lg" type="submit" name="registrar"><i class="fa fa-shopping-cart"></i>  Añadir</button>
+            <form 
+                action="http://localhost/tiendita/index.php?modulo=Juego/Juego&controlador=Juego&funcion=addCart"
+                method="POST"
+                >
+                <input type="hidden" name="jue_id" value="<?php echo $jue['jue_id']?>">
+                <input type="hidden" name="cliente" value="<?php echo $_SESSION['id']?>">
+                
+                <button class="btn btn-primary btn-lg" 
+                        id="btn-add-cart" 
+                        type="submit" >
+                        <i class="fa fa-shopping-cart"></i>  Añadir
+                </button>
+            </form>
+            
         </center><br>
     </div>
     
@@ -113,12 +122,16 @@
         }
         }
 ?>
-<script src="js/jquery.elevateZoom-3.0.8.min.js"></script>
-<script src="js/jquery-1.8.3.js"></script>
-<script src="js/jquery.elevatezoom.js"></script>
+
+<script src="web/js/jquery-1.8.3.min.js"></script>
+
 <script>
-    $('#imagen').elevateZoom({zoomType: "inner",
-cursor: "crosshair",
-zoomWindowFadeIn: 500,
-zoomWindowFadeOut: 750});
+    $(document).ready(() => {
+            $('#imagen').elevateZoom({zoomType: "inner",
+        cursor: "crosshair",
+        zoomWindowFadeIn: 500,
+        zoomWindowFadeOut: 750});
+
+    })
+
 </script>

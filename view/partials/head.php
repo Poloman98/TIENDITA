@@ -11,21 +11,21 @@
         <title> GAMES</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="web/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
-        <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+        <link href="web/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+        <link href="web/dist/css/sb-admin-2.css" rel="stylesheet">
 
         <!-- Morris Charts CSS -->
-        <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+        <link href="web/vendor/morrisjs/morris.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="web/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         
-        <link rel="shortcut icon" type="image/x-icon" href="logo/logazo2.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/logazo2.png" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

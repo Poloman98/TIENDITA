@@ -14,7 +14,7 @@
             while ($jue= mysqli_fetch_assoc($juego)){
                 echo "<tr>";
                 echo "<td>".$indice++."</td>";
-                echo "<td>".$jue['jue_nombre']."</td>";
+                echo "<td>".utf8_decode($jue['jue_nombre'])."</td>";
                 echo "<td class='col-md-2'><img src='".$jue['jue_imagen']."' width=40% /></td>";
                 echo "<td>".$jue['jue_cantidad']."</td>";
                 echo "<td>$ ".$jue['jue_precio']."</td>";

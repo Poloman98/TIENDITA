@@ -1,13 +1,13 @@
 <?php
     
-    include_once '../model/Usuario/UsuarioModel.php';
+    include_once 'model/Usuario/UsuarioModel.php';
 
 class UsuarioController{
     public function getCrear(){
         $objConnection=new UsuarioModel();
         $sql="select * from ciudad";
         $ciudad=$objConnection->consultar($sql);
-        include_once '../view/usuario/Usuario/crear.php';
+        include_once 'view/usuario/Usuario/crear.php';
     }
     
     public function postCrear() {
@@ -46,7 +46,7 @@ class UsuarioController{
         
         $tipo_usuario=$objConnection->consultar($consulta);
         
-        include '../view/usuario/Usuario/editar.php';
+        include 'view/usuario/Usuario/editar.php';
     }
     public function postEditar(){
         $objConnection=new UsuarioModel();
@@ -94,7 +94,7 @@ class UsuarioController{
         
         
         
-        include '../view/usuario/Usuario/eliminar.php';
+        include 'view/usuario/Usuario/eliminar.php';
     }
     
     public function postEliminar(){
@@ -105,7 +105,7 @@ class UsuarioController{
     
 
     public function getLogin(){
-        include_once '../view/usuario/usuario/login.php';
+        include_once 'view/usuario/usuario/login.php';
     }
     public function postLogin(){
         $objConnection=new UsuarioModel();
@@ -159,7 +159,7 @@ class UsuarioController{
             
             $cliente=$objConnection->consultar($consulta);
             
-            include '../view/usuario/Usuario/listar.php';
+            include 'view/usuario/Usuario/listar.php';
         }
     }
 ?>

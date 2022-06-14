@@ -81,18 +81,18 @@
             <input class="form-control" name="precio" placeholder="Precio" min="1" type="number">
         </div>
         <div class="col-md-5 form-group">
-            <label>Plataforma</label>
+            <!-- <label>Plataforma</label> -->
             <?php
-                    while($pla= mysqli_fetch_assoc($plataforma)){
-                        echo "<div><input class='col-md-3' name='plataforma[]' type='checkbox' value='".$pla['pla_id']."'>".$pla['pla_descripcion']."</div>";
-                    }
-                ?>
-        </div>
+                    //while($pla= mysqli_fetch_assoc($plataforma)){
+                    //    echo "<div><input class='col-md-3' name='plataforma[]' type='checkbox' value='".$pla['pla_id']."'>".$pla['pla_descripcion']."</div>";
+                    //}
+                 ?>
+        <!-- </div> -->
         <div class="col-md-5 form-group">
             <label>Idioma</label>
             <?php
                     while($idi= mysqli_fetch_assoc($idioma)){
-                        echo "<div><input class='col-md-3' name='idioma[]' type='checkbox' value='".$idi['idi_id']."'>".utf8_encode($idi['idi_descripcion'])."</div>";
+                        echo "<div><input class='col-md-3' name='idioma[]' type='checkbox' value='".$idi['idi_id']."'>".$idi['idi_descripcion']."</div>";
                     }
                 ?>
         </div>

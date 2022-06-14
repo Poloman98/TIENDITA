@@ -3,7 +3,7 @@
 Class RolController{
     
     public function getCrear(){
-        include_once '../view/usuario/Rol/crear.php';
+        include_once 'view/usuario/Rol/crear.php';
     }
     
     public function postCrear() {
