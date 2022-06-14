@@ -39,7 +39,7 @@
             $genero=$_POST['genero'];
             //echo "<pre>";
             //echo die(print_r($_POST));
-            $ruta="juegos/$imagen";
+            $ruta="img/$imagen";
 
             move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
@@ -278,21 +278,49 @@
             }
 
 
-            $this->putInTheCart($carrito['car_id'],$juego);
+            $this->putInTheCart($carrito['car_id'],$juego, 1, $objConnection);
             
             echo json_encode(["msg" => true]);
         }
 
 
-        function putInTheCart($cart_id, $juego, $cantidad = 1){
+        function putInTheCart($cart_id, $juego, $cantidad = 1, $objConnection){
+
+
+            $sql = "SELECT dc.det_car_id, dc.det_car_cantidad FROM carrito c JOIN detalle_carrito dc ON dc.car_id = c.car_id JOIN juego j ON j.jue_id = dc.jue_id WHERE c.car_id = $cart_id AND j.jue_id = $juego limit 1;";
+            $dataCarrito = $objConnection->consultar($sql);
+            
+            $data = mysqli_fetch_assoc($dataCarrito);   
+
+            $sql = "SELECT jue_precio FROM juego WHERE jue_id = $juego limit 1";
+            $dataJuego = $objConnection->consultar($sql);
+
+            $resultJuego = mysqli_fetch_assoc($dataJuego); 
+
+            if(!$data) {
+                $sql = "INSERT INTO detalle_carrito (car_id, jue_id, det_car_cantidad, det_car_subtotal) VALUES ($cart_id, $juego, '1', '".$resultJuego['jue_precio']."');";
+                $objConnection->insertar($sql);
+            } else {
+                $cantidad = $data['det_car_cantidad'] + 1;
+                $subtotal = $resultJuego['jue_precio'] * $cantidad;
+                $sql = "UPDATE detalle_carrito SET det_car_subtotal = '$subtotal', det_car_cantidad = $cantidad WHERE detalle_carrito.det_car_id = ".$data['det_car_id'].";";
+                $objConnection->editar($sql);
+            }
+            
+        }
+
+        function viewCar(){
             $objConnection = new JuegoModel();
 
-            $sql = "SELECT car_id FROM carrito where cli_id = 2 limit 1";
-            // $dataCarrito = $objConnection->consultar($sql);
-            // dd(mysqli_fetch_assoc($datacarrito));
+            $sql="SELECT dc.det_car_id, dc.det_car_cantidad, dc.det_car_subtotal, j.jue_nombre, j.jue_imagen, j.jue_precio 
+                    FROM carrito c 
+                    JOIN detalle_carrito dc ON dc.car_id = c.car_id 
+                    JOIN juego j ON j.jue_id = dc.jue_id 
+                    WHERE c.car_id = 2;";
+            $data = $objConnection->consultar($sql);
 
-            echo $sql;
-            
+            include_once 'view/juego/juego/listar_carrito.php';
+
         }
 
         

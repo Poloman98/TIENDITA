@@ -1,3 +1,10 @@
+<?php
+
+dd( $_SESSION['cliente'] );
+
+?>
+
+
 <style>
     .jumbotron{
         max-width: 100%;
@@ -98,11 +105,11 @@
             <label>Plataforma</label>
             <?php
                     while($pla= mysqli_fetch_assoc($plataforma)){
-//                        if($pla['pla_id']==$jue['pla_id']){
-//                            echo "<div><input checked name='plataforma[]'  class='col-md-3' type='checkbox' value='".$pla['pla_id']."'>".$pla['pla_descripcion']."</div>";
-//                        }else{
+                       if($pla['pla_id']==$jue['pla_id']){
+                           echo "<div><input checked name='plataforma[]'  class='col-md-3' type='checkbox' value='".$pla['pla_id']."'>".$pla['pla_descripcion']."</div>";
+                       }else{
                             echo "<div><input name='plataforma[]'  class='col-md-3' type='checkbox' value='".$pla['pla_id']."'>".$pla['pla_descripcion']."</div>";
-//                        }
+                        }
                     }
                 ?>
         </div>

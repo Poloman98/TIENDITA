@@ -18,6 +18,7 @@
 ?>
 <form name="crearJuego" method="post" action="<?php echo getUrl("Usuario","Usuario","postEditar"); ?>">
     <div class="container">
+        <input type="hidden" name="rol" id="rol" value="<?= $usu['rol_id']; ?>">
         <div class="col-md-5 form-group ">
             <label>Nombre </label>
             <input class="form-control" name="nombre" type="text" placeholder="Nombre" value="<?php echo $usu['cli_nombre'] ?>">

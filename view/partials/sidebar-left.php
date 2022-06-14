@@ -39,6 +39,7 @@
                         <li><a href="<?php //echo getUrl("Usuario", "Usuario", "getEditar",array("cli_id"=>$_SESSION['id'])); ?>"><i class="fa fa-user fa-fw"></i> Perfil</a>
                         </li>
                         <li><a href="<?php echo getUrl("Usuario", "Usuario", "getEditar",array("cli_id"=>$_SESSION['id'])); ?>"><i class="fa fa-gear fa-fw"></i> Actualizar Info</a>
+                        <li><a href="<?php echo getUrl("Juego/Juego", "Juego", "viewCar"); ?>"><i class="fa fa-shopping-cart fa-fw"></i> Ir al carrito</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="<?php echo getUrl("Usuario", "Usuario", "Destroy"); ?>"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
@@ -94,66 +95,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#">Genero<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="<?php echo getUrl("Juego/Genero", "Genero", "getCrear") ?>">Registrar</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo getUrl("Juego/Genero", "Genero", "listar") ?>">Visualizar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Casa Desarrolladora<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="<?php echo getUrl("Juego/CasaDesarrolladora", "CasaDesarrolladora", "getCrear") ?>">Registrar</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo getUrl("Juego/CasaDesarrolladora", "CasaDesarrolladora", "listar") ?>">Visualizar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Ubicaci&oacute;n <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Ciudad<span class="fa arrow"></span></a>
-                                            <ul class="nav nav-third-level">
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Ciudad", "Ciudad", "getCrear") ?>">Registrar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Ciudad", "Ciudad", "listar") ?>">Visualizar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">Departamento<span class="fa arrow"></span></a>
-                                            <ul class="nav nav-third-level">
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Departamento", "Departamento", "getCrear") ?>">Registrar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Departamento", "Departamento", "listar") ?>">Visualizar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">Pa&iacute;s<span class="fa arrow"></span></a>
-                                            <ul class="nav nav-third-level">
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Pais", "Pais", "getCrear") ?>">Registrar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?php echo getUrl("Ubicacion/Pais", "Pais", "listar") ?>">Visualizar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                        
                                 <li>
                                     <a href="#">Usuario<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">

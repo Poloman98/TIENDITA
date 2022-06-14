@@ -50,6 +50,7 @@ class UsuarioController{
     }
     public function postEditar(){
         $objConnection=new UsuarioModel();
+
         $nombre=$_POST['nombre'];
         $apellido=$_POST['apellido'];
         $celular=$_POST['celular'];
@@ -61,11 +62,7 @@ class UsuarioController{
         $usu_id=$_POST['id'];
         $rol=$_POST['rol'];
         
-//        echo "<pre>";
-//        die(print_r($_POST));
-//        echo "</pre>";
-        
-        $actualizar="UPDATE usuario SET usu_correo='$correo', rol_id=$rol where usuario.usu_id=$usu_id";
+        $actualizar="UPDATE usuario SET usu_correo='$correo', rol_id=$rol where usu_id=$usu_id";
         
         $ejecutar=$objConnection->editar($actualizar);
         
@@ -100,7 +97,33 @@ class UsuarioController{
     public function postEliminar(){
         $objConnection=new UsuarioModel();
         
-       $cli_id=$_POST['cli_id'];
+        $cli_id=$_POST['cedula'];
+        $usu_id=$_POST['id'];
+
+        $consulta="SELECT car_id from CARRITO where cli_id=$cli_id";
+        $data = $objConnection->consultar($consulta);
+        $car_id = mysqli_fetch_assoc($data);
+
+        if(!empty($car_id['car_id'])){
+            $consulta="DELETE from detalle_carrito where car_id =".$car_id['car_id'];
+            $user=$objConnection->eliminar($consulta); 
+        
+            $consulta="DELETE from CARRITO where cli_id=$cli_id";
+            $user=$objConnection->eliminar($consulta);    
+        }
+        $consulta="DELETE from CLIENTE where cli_id=$cli_id";
+        $user=$objConnection->eliminar($consulta);
+        
+        $consulta="DELETE from USUARIO where usu_id=$usu_id";
+        $user=$objConnection->eliminar($consulta);
+        
+        $mensaje="Usuario Eliminado ";
+        echo ""
+            . "<script type='text/javascript'>"
+            . " alert ('$mensaje');"
+            . "</script>";
+            redirect(getUrl("Juego/Juego", "Juego", "vista"));
+
     }
     
 

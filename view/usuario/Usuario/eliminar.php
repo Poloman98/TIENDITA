@@ -16,7 +16,7 @@
 <?php
     if($usu= mysqli_fetch_assoc($usuario)){
 ?>
-<form name="crearJuego" method="post" action="<?php echo getUrl("Usuario","Usuario","postEditar"); ?>">
+<form name="crearJuego" method="post" action="<?php echo getUrl("Usuario","Usuario","postEliminar"); ?>">
     <div class="container">
         <div class="col-md-5 form-group ">
             <label>Nombre </label>
