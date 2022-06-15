@@ -29,6 +29,20 @@
     }
 </style>
 
+    <?php
+        if(isset($_SESSION['add_cart'])){
+            unset($_SESSION['add_cart']);
+    ?>
+        <div class="col-md col-sm-12">
+            <div class="alert alert-success" role="alert" id="alert-carrito">
+                Se agrego al carrito
+            </div>
+        </div>
+    <?php
+        }
+    ?>
+
+
 
     <?php 
         

@@ -39,5 +39,6 @@ $(document).ready(function(){
            }
         });
     });
+    $("#alert-carrito").delay(4000).fadeOut();
     
 });

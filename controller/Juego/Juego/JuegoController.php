@@ -261,7 +261,7 @@
             $cliente = $_POST['cliente'];
             $juego = $_POST['jue_id'];
             
-
+           
             $sql = "SELECT car_id FROM carrito where cli_id = '$cliente' limit 1";
             $dataCarrito = $objConnection->consultar($sql);
 
@@ -281,7 +281,9 @@
 
             $this->putInTheCart($carrito['car_id'],$juego, 1, $objConnection);
             
-            echo json_encode(["msg" => true]);
+            $_SESSION['add_cart'] = true;
+
+            redirect(getUrl("Juego/Juego", "Juego", "detalle", array('jue_id' => $juego)));
         }
 
 
@@ -317,7 +319,7 @@
                     FROM carrito c 
                     JOIN detalle_carrito dc ON dc.car_id = c.car_id 
                     JOIN juego j ON j.jue_id = dc.jue_id 
-                    WHERE c.car_id = 2;";
+                    WHERE c.car_id = 11;";
             $data = $objConnection->consultar($sql);
 
             include_once 'view/juego/juego/listar_carrito.php';
